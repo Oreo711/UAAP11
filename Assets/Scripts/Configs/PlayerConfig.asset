@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f7c17d2ed020849b6b925a74fe5423, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
+  <Walkspeed>k__BackingField: 5
+  <RotationSpeed>k__BackingField: 900
+  <Prefab>k__BackingField: {fileID: 6811295667538311882, guid: 961884ba8d49f6a409ac47fa0c505fb2, type: 3}
+  <SpawnPoint>k__BackingField: {fileID: 0}
