@@ -1,14 +1,23 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [CreateAssetMenu(fileName = "PlayerConfig")]
 public class PlayerConfig : ScriptableObject
 {
-	[field: SerializeField] public float Walkspeed {get; private set;}
+	[SerializeField] private MovementSettings _movementSettings;
 
-	[field: SerializeField] public float RotationSpeed {get; private set;}
+	public MovementSettings MovementSettings => _movementSettings;
 
-	[field: SerializeField] public Player Prefab {get; private set;}
+}
 
-	[field: SerializeField] public Transform SpawnPoint {get; private set;}
+[Serializable]
+public class MovementSettings
+{
+	[SerializeField] private float _walkSpeed;
+	[SerializeField] private float _rotationSpeed;
+
+	public float WalkSpeed     => _walkSpeed;
+	public float RotationSpeed => _rotationSpeed;
 }

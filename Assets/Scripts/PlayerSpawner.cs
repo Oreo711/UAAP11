@@ -1,19 +1,20 @@
-using System;
 using UnityEngine;
 
-public class PlayerSpawner
-{
-	private readonly PlayerConfig _config;
 
-	public PlayerSpawner (PlayerConfig config)
+public class PlayerSpawner : MonoBehaviour
+{
+	[SerializeField] private PlayerConfig _config;
+	[SerializeField] private Player _prefab;
+
+	private PlayerFactory _playerFactory;
+
+	private void Awake ()
 	{
-		_config = config;
+		_playerFactory = new PlayerFactory(_prefab);
 	}
 
-	private readonly PlayerFactory _playerFactory = new PlayerFactory();
-
-	public void Spawn ()
+	public Player Spawn ()
 	{
-		_playerFactory.CreatePlayer(_config);
+		return _playerFactory.Create(_config);
 	}
 }

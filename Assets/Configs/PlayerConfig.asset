@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f7c17d2ed020849b6b925a74fe5423, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
-  <Walkspeed>k__BackingField: 5
-  <RotationSpeed>k__BackingField: 900
-  <Prefab>k__BackingField: {fileID: 6811295667538311882, guid: 961884ba8d49f6a409ac47fa0c505fb2, type: 3}
-  <SpawnPoint>k__BackingField: {fileID: 0}
+  _movementSettings:
+    _walkSpeed: 5
+    _rotationSpeed: 900
