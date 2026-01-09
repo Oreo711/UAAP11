@@ -772,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
   _config: {fileID: 11400000, guid: aad5858c5c302e949ad7748c2f6c2e04, type: 2}
   _prefab: {fileID: 6811295667538311882, guid: 961884ba8d49f6a409ac47fa0c505fb2, type: 3}
+  _spawnPoint: {fileID: 1239175591}
 --- !u!4 &194693084
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7971676969187889234}
   - component: {fileID: 6811295667538311882}
   - component: {fileID: 6367469492689272536}
+  - component: {fileID: 4313427275290526935}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -72,7 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7865d4f38687b6741a20cb2013264d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _cameraTarget: {fileID: 0}
   _movement: {fileID: 6367469492689272536}
 --- !u!114 &6367469492689272536
 MonoBehaviour:
@@ -86,6 +86,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02070fe28f14ea2b781dd9cca28e94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &4313427275290526935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033487586718263505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ece471f4db4db44a9ac9d21bc78e6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
+  _prefab: {fileID: 5455238606587795654, guid: cfda1c5e12003f0479ba0c2423c6b7c2, type: 3}
+  _projectileSpeed: 20
+  _projectileLifespan: 4
 --- !u!1001 &8342046532407126021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,8 +156,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 19588385245968726, guid: 8ee08d04ad5df46fbb2e97260b63420b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8748089862646254540}
   m_SourcePrefab: {fileID: 100100000, guid: 8ee08d04ad5df46fbb2e97260b63420b, type: 3}
+--- !u!1 &8323057383952142675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 19588385245968726, guid: 8ee08d04ad5df46fbb2e97260b63420b, type: 3}
+  m_PrefabInstance: {fileID: 8342046532407126021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8748089862646254540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323057383952142675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f51c382b7d8db4baf5a85c794e7924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerView
+  _player: {fileID: 6811295667538311882}
 --- !u!4 &8703945406269656041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 796652407307068396, guid: 8ee08d04ad5df46fbb2e97260b63420b, type: 3}

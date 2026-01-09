@@ -9,10 +9,10 @@ public class PlayerFactory
         _prefab = prefab;
     }
 
-    public Player Create (PlayerConfig config)
+    public Player Create (PlayerConfig config, Vector3 position)
     {
         Player player = Object.Instantiate(_prefab);
-        player.transform.position = Vector3.zero;
+        player.transform.position = position;
 
         player.Initialize(config);
         return player;

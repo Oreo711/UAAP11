@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
 	[SerializeField] private PlayerConfig _config;
-	[SerializeField] private Player _prefab;
+	[SerializeField] private Player       _prefab;
+	[SerializeField] private Transform    _spawnPoint;
 
 	private PlayerFactory _playerFactory;
 
@@ -15,6 +16,6 @@ public class PlayerSpawner : MonoBehaviour
 
 	public Player Spawn ()
 	{
-		return _playerFactory.Create(_config);
+		return _playerFactory.Create(_config, _spawnPoint.position);
 	}
 }
