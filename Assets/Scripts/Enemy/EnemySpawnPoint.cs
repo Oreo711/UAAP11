@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
-public class PlayerSpawnPoint : MonoBehaviour
+public class EnemySpawnPoint : MonoBehaviour
 {
     private void OnDrawGizmos ()
     {
-        Gizmos.color = Color.pink;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 1);
     }
 }

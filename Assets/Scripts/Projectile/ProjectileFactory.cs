@@ -14,7 +14,7 @@ public class ProjectileFactory
         Projectile instance = Object.Instantiate(_prefab);
 
         instance.transform.position = position;
-        instance.Initialize(direction, speed, lifespan);
+        instance.Launch(direction, speed, lifespan);
         return instance;
     }
 }

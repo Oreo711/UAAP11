@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class Projectile : MonoBehaviour
     private float   _speed;
     private float   _lifespan;
 
-    public void Initialize (Vector3 direction, float speed, float lifespan)
+    public void Launch (Vector3 direction, float speed, float lifespan)
     {
         _direction = direction;
         _speed     = speed;
@@ -19,6 +20,15 @@ public class Projectile : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         StartCoroutine(Move());
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.TryGetComponent(out IShootable hitTarget))
+        {
+            hitTarget.OnShot();
+            Destroy(gameObject);
+        }
     }
 
     private IEnumerator Move ()
