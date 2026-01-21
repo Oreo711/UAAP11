@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-public class KillCountCondition : IGameplayBreakCondition
+
+public class KillCountCondition : IGameplaySessionEndCondition
 {
 	public event Action Met;
 
@@ -10,6 +11,10 @@ public class KillCountCondition : IGameplayBreakCondition
 	public KillCountCondition (int requiredKillCount)
 	{
 		_requiredKillCount = requiredKillCount;
+	}
+
+	public void Initialize ()
+	{
 		Enemy.Died += HandleEnemyDied;
 	}
 
@@ -21,5 +26,10 @@ public class KillCountCondition : IGameplayBreakCondition
 		{
 			Met?.Invoke();
 		}
+	}
+
+	public void Dispose ()
+	{
+		Enemy.Died -= HandleEnemyDied;
 	}
 }

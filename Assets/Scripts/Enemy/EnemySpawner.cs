@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy           _prefab;
     [SerializeField] private EnemyConfig     _config;
+    [SerializeField] private Enemy           _prefab;
     [SerializeField] private List<Transform> _spawnPoints;
     [SerializeField] private float           _cooldown;
 

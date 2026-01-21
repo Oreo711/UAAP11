@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class SurvivalTimeCondition : IGameplayBreakCondition
+public class SurvivalTimeCondition : IGameplaySessionEndCondition
 {
     public event Action Met;
 
@@ -15,7 +15,7 @@ public class SurvivalTimeCondition : IGameplayBreakCondition
         _coroutineRunner = coroutineRunner;
     }
 
-    public void Start ()
+    public void Initialize ()
     {
         _coroutineRunner.StartCoroutine(Run());
     }
@@ -25,5 +25,10 @@ public class SurvivalTimeCondition : IGameplayBreakCondition
         yield return new WaitForSeconds(_time);
 
         Met?.Invoke();
+    }
+
+    public void Dispose ()
+    {
+
     }
 }

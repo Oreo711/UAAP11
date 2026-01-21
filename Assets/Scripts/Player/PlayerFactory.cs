@@ -11,8 +11,7 @@ public class PlayerFactory
 
     public Player Create (PlayerConfig config, Vector3 position)
     {
-        Player player = Object.Instantiate(_prefab);
-        player.transform.position = position;
+        Player player = Object.Instantiate(_prefab, position, Quaternion.identity);
 
         player.Initialize(config);
         return player;

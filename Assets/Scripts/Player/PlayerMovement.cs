@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -9,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 	private CharacterController     _controller;
 	private Vector3 _input;
 
-	public Vector3 Direction     {get; private set;}
+	public Vector3 Direction     {get; private set;} = Vector3.forward;
 	public float   RotationSpeed => _rotationSpeed;
 
 	private void Awake ()

@@ -1,11 +1,11 @@
 using System;
-using UnityEngine;
 
-public class OutOfHealthCondition : IGameplayBreakCondition
+
+public class OutOfHealthCondition : IGameplaySessionEndCondition
 {
 	public event Action Met;
 
-	public OutOfHealthCondition ()
+	public void Initialize ()
 	{
 		Player.Died += HandlePlayerDied;
 	}
@@ -13,5 +13,10 @@ public class OutOfHealthCondition : IGameplayBreakCondition
 	private void HandlePlayerDied ()
 	{
 		Met?.Invoke();
+	}
+
+	public void Dispose ()
+	{
+		Player.Died -= HandlePlayerDied;
 	}
 }

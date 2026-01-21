@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
 
@@ -13,8 +11,8 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private int            _requiredKillCount;
     [SerializeField] private int            _maxEnemiesAllowed;
 
-    private IGameplayBreakCondition _winCondition;
-    private IGameplayBreakCondition _lossCondition;
+    private IGameplaySessionEndCondition _winCondition;
+    private IGameplaySessionEndCondition _lossCondition;
 
     private void Awake ()
     {
@@ -41,18 +39,21 @@ public class GameplayController : MonoBehaviour
             default:
                 throw new InvalidEnumArgumentException("Invalid value for Loss Condition Index");
         }
-
-        Initialize();
     }
 
     private void Start ()
     {
-        _winCondition.Met  += HandleWinConditionMet;
-        _lossCondition.Met += HandleLossConditionMet;
+        Initialize();
     }
 
     private void Initialize ()
     {
+        _winCondition.Initialize();
+        _lossCondition.Initialize();
+
+        _winCondition.Met  += HandleWinConditionMet;
+        _lossCondition.Met += HandleLossConditionMet;
+
         Player player = _playerSpawner.Spawn();
         _enemySpawner.Launch();
     }
@@ -60,10 +61,23 @@ public class GameplayController : MonoBehaviour
     private void HandleWinConditionMet ()
     {
         Debug.Log("Won!");
+        _winCondition.Met  -= HandleWinConditionMet;
+        _lossCondition.Met -= HandleLossConditionMet;
     }
 
     private void HandleLossConditionMet ()
     {
         Debug.Log("Lost.");
+        _winCondition.Met  -= HandleWinConditionMet;
+        _lossCondition.Met -= HandleLossConditionMet;
+    }
+
+    private void OnDestroy ()
+    {
+        _winCondition.Met  -= HandleWinConditionMet;
+        _lossCondition.Met -= HandleLossConditionMet;
+
+        _winCondition.Dispose();
+        _lossCondition.Dispose();
     }
 }

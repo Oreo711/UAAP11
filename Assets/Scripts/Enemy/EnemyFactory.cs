@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFactory
 {
-    private Enemy _prefab;
+    private readonly Enemy _prefab;
 
     public EnemyFactory (Enemy prefab)
     {
@@ -13,8 +13,7 @@ public class EnemyFactory
 
     public Enemy Create (EnemyConfig config, Vector3 position)
     {
-        Enemy enemy = Object.Instantiate(_prefab);
-        enemy.transform.position = position;
+        Enemy enemy = Object.Instantiate(_prefab, position, Quaternion.identity);
 
         enemy.Initialize(config);
         return enemy;

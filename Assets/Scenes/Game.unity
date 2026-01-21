@@ -749,8 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460fcb7b9174e76408efe6684c48296c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  _prefab: {fileID: 1002009200803870936, guid: a9e031a6ff1c41048abe8403fa1c5b81, type: 3}
   _config: {fileID: 11400000, guid: 7cc3227f8351d034cba169f58afc0ac3, type: 2}
+  _prefab: {fileID: 1002009200803870936, guid: a9e031a6ff1c41048abe8403fa1c5b81, type: 3}
   _spawnPoints:
   - {fileID: 2071957446}
   - {fileID: 793395474}
@@ -906,50 +906,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 222fbcf000a3b734a8bf0d4260ad64c0, type: 3}
   m_PrefabInstance: {fileID: 217877886}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &220867233
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 220867234}
-  - component: {fileID: 220867235}
-  m_Layer: 0
-  m_Name: Entry Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &220867234
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220867233}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &220867235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220867233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7faaf9101232ae489d838c4ac6019f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntryPoint
 --- !u!1 &226738595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 779790c9668770a46813fdbf3e78d214, type: 3}
@@ -5242,8 +5198,8 @@ MonoBehaviour:
   _playerSpawner: {fileID: 194693083}
   _enemySpawner: {fileID: 198467455}
   _winConditionIndex: 1
-  _lossConditionIndex: 0
-  _requiredSurvivalTime: 15
+  _lossConditionIndex: 1
+  _requiredSurvivalTime: 5
   _requiredKillCount: 5
   _maxEnemiesAllowed: 10
 --- !u!4 &1722484391
@@ -6914,7 +6870,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1712106968}
-  - {fileID: 220867234}
   - {fileID: 1239175591}
   - {fileID: 194693084}
   - {fileID: 1722484391}

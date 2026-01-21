@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,10 +8,11 @@ public class EnemyMovement : MonoBehaviour
     private float               _walkSpeed;
     private float               _rotationSpeed;
     private float               _redirectionCooldown;
-    private Vector3             _direction;
+    private Vector3             _direction = Vector3.forward;
     private CharacterController _controller;
 
-    public float RotationSpeed => _rotationSpeed;
+    public float   RotationSpeed => _rotationSpeed;
+    public Vector3 Direction     => _direction;
 
     public void Initialize(EnemyMovementSettings settings)
     {
@@ -53,6 +53,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void SwitchDirection ()
     {
-        _direction = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1)).normalized;
+        Vector2 point = Random.insideUnitCircle.normalized;
+        _direction = new Vector3(point.x, 0, point.y);
     }
 }
