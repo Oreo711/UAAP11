@@ -1,35 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Configs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner
 {
-    [SerializeField] private EnemyConfig     _config;
-    [SerializeField] private Enemy           _prefab;
-    [SerializeField] private List<Transform> _spawnPoints;
-    [SerializeField] private float           _cooldown;
+    private readonly EnemyConfig      _enemyConfig;
+    private readonly Enemy            _prefab;
+    private readonly EnemySpawnConfig _enemySpawnConfig;
+    private readonly MonoBehaviour    _coroutineRunner;
 
-    private EnemyFactory _factory;
+    private readonly EnemyFactory _factory;
 
-    private void Awake ()
+    public EnemySpawner (EnemyConfig enemyConfig, Enemy prefab, MonoBehaviour coroutineRunner, EnemySpawnConfig enemySpawnConfig)
     {
-        _factory = new EnemyFactory(_prefab);
+        _enemyConfig                = enemyConfig;
+        _prefab                = prefab;
+        _coroutineRunner       = coroutineRunner;
+        _enemySpawnConfig      = enemySpawnConfig;
+        _factory               = new EnemyFactory(_prefab);
     }
 
     public void Launch ()
     {
-        StartCoroutine(Spawn());
+        _coroutineRunner.StartCoroutine(Spawn());
     }
 
     private IEnumerator Spawn ()
     {
         while (true)
         {
-            yield return new WaitForSeconds(_cooldown);
+            yield return new WaitForSeconds(_enemySpawnConfig.Cooldown);
 
-            _factory.Create(_config, _spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
+            _factory.Create(_enemyConfig, _enemySpawnConfig.SpawnPositions[Random.Range(0, _enemySpawnConfig.SpawnPositions.Count)]);
         }
     }
 }

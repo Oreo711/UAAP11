@@ -1,21 +1,25 @@
-using UnityEngine;
+using Configs;
 
 
-public class PlayerSpawner : MonoBehaviour
+public class PlayerSpawner
 {
-	[SerializeField] private PlayerConfig _config;
-	[SerializeField] private Player       _prefab;
-	[SerializeField] private Transform    _spawnPoint;
+	private readonly PlayerConfig      _playerConfig;
+	private readonly Player            _prefab;
+	private readonly PlayerSpawnConfig _playerSpawnConfig;
 
-	private PlayerFactory _playerFactory;
+	private readonly PlayerFactory _playerFactory;
 
-	private void Awake ()
+	public PlayerSpawner (PlayerConfig playerConfig, Player prefab, PlayerSpawnConfig playerSpawnConfig)
 	{
+		_playerConfig = playerConfig;
+		_prefab = prefab;
+		_playerSpawnConfig = playerSpawnConfig;
+
 		_playerFactory = new PlayerFactory(_prefab);
 	}
 
 	public Player Spawn ()
 	{
-		return _playerFactory.Create(_config, _spawnPoint.position);
+		return _playerFactory.Create(_playerConfig, _playerSpawnConfig.SpawnPosition);
 	}
 }

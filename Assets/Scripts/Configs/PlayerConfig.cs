@@ -7,7 +7,6 @@ public class PlayerConfig : ScriptableObject
 	[SerializeField] private PlayerMovementSettings _movementSettings;
 
 	public PlayerMovementSettings MovementSettings => _movementSettings;
-
 }
 
 [Serializable]

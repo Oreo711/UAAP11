@@ -1,16 +1,17 @@
+using System;
 using System.ComponentModel;
 using UnityEngine;
 
 public class GameplayController : MonoBehaviour
 {
-    [SerializeField] private PlayerSpawner  _playerSpawner;
-    [SerializeField] private EnemySpawner   _enemySpawner;
     [SerializeField] private WinConditions  _winConditionIndex;
     [SerializeField] private LossConditions _lossConditionIndex;
     [SerializeField] private float          _requiredSurvivalTime;
     [SerializeField] private int            _requiredKillCount;
     [SerializeField] private int            _maxEnemiesAllowed;
 
+    private PlayerSpawner  _playerSpawner;
+    private EnemySpawner   _enemySpawner;
     private IGameplaySessionEndCondition _winCondition;
     private IGameplaySessionEndCondition _lossCondition;
 
@@ -41,12 +42,13 @@ public class GameplayController : MonoBehaviour
         }
     }
 
-    private void Start ()
+    public void Initialize (PlayerSpawner playerSpawner, EnemySpawner enemySpawner)
     {
-        Initialize();
+        _playerSpawner = playerSpawner;
+        _enemySpawner  = enemySpawner;
     }
 
-    private void Initialize ()
+    private void Start ()
     {
         _winCondition.Initialize();
         _lossCondition.Initialize();
