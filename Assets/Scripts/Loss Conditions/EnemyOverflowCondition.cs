@@ -5,9 +5,9 @@ public class EnemyOverflowCondition : IGameplaySessionEndCondition
 {
 	public event Action Met;
 
-	private readonly int _requiredEnemyCount;
-
-	private int _currentEnemyCount;
+	private readonly int          _requiredEnemyCount;
+	private          EnemySpawner _enemySpawner;
+	private          int          _currentEnemyCount;
 
 	public EnemyOverflowCondition (int requiredEnemyCount)
 	{
@@ -16,11 +16,11 @@ public class EnemyOverflowCondition : IGameplaySessionEndCondition
 
 	public void Initialize ()
 	{
-		Enemy.Spawned += HandleEnemySpawned;
-		Enemy.Died += HandleEnemyDied;
+		_enemySpawner.EnemySpawned += HandleEnemyEnemySpawned;
+		 _enemySpawner.EnemyDied += HandleEnemyDied;
 	}
 
-	private void HandleEnemySpawned ()
+	private void HandleEnemyEnemySpawned ()
 	{
 		_currentEnemyCount++;
 
@@ -37,7 +37,7 @@ public class EnemyOverflowCondition : IGameplaySessionEndCondition
 
 	public void Dispose ()
 	{
-		Enemy.Spawned -= HandleEnemySpawned;
-		Enemy.Died    -= HandleEnemyDied;
+		_enemySpawner.EnemySpawned -= HandleEnemyEnemySpawned;
+		_enemySpawner.EnemyDied    -= HandleEnemyDied;
 	}
 }

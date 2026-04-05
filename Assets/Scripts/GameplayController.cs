@@ -1,54 +1,36 @@
 using System;
 using System.ComponentModel;
+using Configs;
+using DefaultNamespace;
 using UnityEngine;
 
-public class GameplayController : MonoBehaviour
+public class GameplayController
 {
-    [SerializeField] private WinConditions  _winConditionIndex;
-    [SerializeField] private LossConditions _lossConditionIndex;
-    [SerializeField] private float          _requiredSurvivalTime;
-    [SerializeField] private int            _requiredKillCount;
-    [SerializeField] private int            _maxEnemiesAllowed;
+    private readonly PlayerSpawner                      _playerSpawner;
+    private readonly EnemySpawner                       _enemySpawner;
+    private readonly GameplaySessionEndConditionsConfig _sessionEndConditionConfig;
+    private readonly GameplaySessionEndConditionFactory _sessionEndConditionFactory;
+    private readonly IGameplaySessionEndCondition       _winCondition;
+    private readonly IGameplaySessionEndCondition       _lossCondition;
 
-    private PlayerSpawner  _playerSpawner;
-    private EnemySpawner   _enemySpawner;
-    private IGameplaySessionEndCondition _winCondition;
-    private IGameplaySessionEndCondition _lossCondition;
-
-    private void Awake ()
+    public GameplayController (
+        PlayerSpawner playerSpawner,
+        EnemySpawner enemySpawner,
+        GameplaySessionEndConditionsConfig sessionEndConditionsConfig)
     {
-        switch (_winConditionIndex)
-        {
-            case WinConditions.SurvivalTime:
-                _winCondition = new SurvivalTimeCondition(_requiredSurvivalTime, this);
-                break;
-            case WinConditions.KillCount:
-                _winCondition = new KillCountCondition(_requiredKillCount);
-                break;
-            default:
-                throw new InvalidEnumArgumentException("Invalid value for Win Condition Index");
-        }
+        _playerSpawner             = playerSpawner;
+        _enemySpawner              = enemySpawner;
+        _sessionEndConditionConfig = sessionEndConditionsConfig;
 
-        switch (_lossConditionIndex)
-        {
-            case LossConditions.enemyOverflow:
-                _lossCondition = new EnemyOverflowCondition(_maxEnemiesAllowed);
-                break;
-            case LossConditions.outOfHealth:
-                _lossCondition = new OutOfHealthCondition();
-                break;
-            default:
-                throw new InvalidEnumArgumentException("Invalid value for Loss Condition Index");
-        }
+        _sessionEndConditionFactory = new GameplaySessionEndConditionFactory(_enemySpawner, _sessionEndConditionConfig);
+
+				_winCondition = _sessionEndConditionFactory
+            .CreateWinConditionFor(_sessionEndConditionConfig.WinConditionIndex);
+        _lossCondition = _sessionEndConditionFactory
+            .CreateLossConditionFor(_sessionEndConditionConfig.LossConditionIndex);
     }
 
-    public void Initialize (PlayerSpawner playerSpawner, EnemySpawner enemySpawner)
-    {
-        _playerSpawner = playerSpawner;
-        _enemySpawner  = enemySpawner;
-    }
-
-    private void Start ()
+    public void Initialize ()
     {
         _winCondition.Initialize();
         _lossCondition.Initialize();
@@ -74,7 +56,7 @@ public class GameplayController : MonoBehaviour
         _lossCondition.Met -= HandleLossConditionMet;
     }
 
-    private void OnDestroy ()
+    public void Dispose ()
     {
         _winCondition.Met  -= HandleWinConditionMet;
         _lossCondition.Met -= HandleLossConditionMet;

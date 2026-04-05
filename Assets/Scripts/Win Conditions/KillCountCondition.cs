@@ -6,16 +6,18 @@ public class KillCountCondition : IGameplaySessionEndCondition
 {
 	public event Action Met;
 
-	private int _requiredKillCount;
+	private          int          _requiredKillCount;
+	private readonly EnemySpawner _enemySpawner;
 
-	public KillCountCondition (int requiredKillCount)
+	public KillCountCondition (int requiredKillCount, EnemySpawner enemySpawner)
 	{
 		_requiredKillCount = requiredKillCount;
+		_enemySpawner = enemySpawner;
 	}
 
 	public void Initialize ()
 	{
-		Enemy.Died += HandleEnemyDied;
+		_enemySpawner.EnemySpawned += HandleEnemyDied;
 	}
 
 	private void HandleEnemyDied ()
@@ -30,6 +32,6 @@ public class KillCountCondition : IGameplaySessionEndCondition
 
 	public void Dispose ()
 	{
-		Enemy.Died -= HandleEnemyDied;
+		_enemySpawner.EnemySpawned -= HandleEnemyDied;
 	}
 }

@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IShootable
 {
-    public static event Action Spawned;
-    public static event Action Died;
+    public event Action<Enemy> Died;
 
     [SerializeField] private EnemyMovement _movement;
     [SerializeField] private float         _contactDamage;
@@ -14,11 +13,6 @@ public class Enemy : MonoBehaviour, IShootable
     public void Initialize (EnemyConfig config)
     {
         _movement.Initialize(config.MovementSettings);
-    }
-
-    private void Start ()
-    {
-        Spawned?.Invoke();
     }
 
     private void OnTriggerEnter (Collider other)
@@ -31,7 +25,7 @@ public class Enemy : MonoBehaviour, IShootable
 
     public void OnShot ()
     {
-        Died?.Invoke();
+        Died?.Invoke(this);
         Destroy(gameObject);
     }
 }

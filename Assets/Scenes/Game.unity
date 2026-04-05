@@ -462,7 +462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntryPoint
   _environment: {fileID: 1037385582286896286, guid: 59ef104aea79f1f4dbc00f936b5755a9, type: 3}
-  _gameplayController: {fileID: 125987716487907824, guid: bb472c8327c01384382092c543f1597c, type: 3}
   _playerPrefab: {fileID: 6811295667538311882, guid: 961884ba8d49f6a409ac47fa0c505fb2, type: 3}
   _enemyPrefab: {fileID: 1002009200803870936, guid: a9e031a6ff1c41048abe8403fa1c5b81, type: 3}
 --- !u!4 &1151817936

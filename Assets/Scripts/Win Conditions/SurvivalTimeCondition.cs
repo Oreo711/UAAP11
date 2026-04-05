@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DefaultNamespace.Miscellaneous;
 using UnityEngine;
 
 public class SurvivalTimeCondition : IGameplaySessionEndCondition
@@ -7,9 +8,9 @@ public class SurvivalTimeCondition : IGameplaySessionEndCondition
     public event Action Met;
 
     private readonly float _time;
-    private readonly MonoBehaviour _coroutineRunner;
+    private readonly CoroutineRunner _coroutineRunner;
 
-    public SurvivalTimeCondition (float time, MonoBehaviour coroutineRunner)
+    public SurvivalTimeCondition (float time, CoroutineRunner coroutineRunner)
     {
         _time = time;
         _coroutineRunner = coroutineRunner;
